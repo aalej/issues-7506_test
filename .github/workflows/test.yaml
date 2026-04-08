@@ -25,13 +25,13 @@ jobs:
           java-version: "22"
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
-        # run: |
-        #   git clone https://github.com/firebase/firebase-tools.git -b aalej_handle-powershell-commas
-        #   cd firebase-tools
-        #   npm install
-        #   npm run build
-        #   npm link
+        # run: npm install -g firebase-tools
+        run: |
+          git clone https://github.com/firebase/firebase-tools.git -b aalej_handle-powershell-commas
+          cd firebase-tools
+          npm install
+          npm run build
+          npm link
 
       - name: Run Firebase Emulators
         shell: pwsh
