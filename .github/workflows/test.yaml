@@ -19,7 +19,8 @@ jobs:
           node-version: "22"
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        # run: npm install -g firebase-tools
+        run: npm install -g firebase/firebase-tools#aalej_handle-powershell-commas
 
       - name: Run Firebase Emulators
         shell: pwsh
