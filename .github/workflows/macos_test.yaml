@@ -1,0 +1,37 @@
+name: Test on macOS
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  test-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup Java 22
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '22'
+          
+      - name: Clone, Build, and Link Firebase CLI
+        run: |
+          git clone https://github.com/firebase/firebase-tools.git -b aalej_handle-powershell-commas
+          cd firebase-tools
+          npm install
+          npm run build
+          npm link
+
+      - name: Run Firebase Emulators
+        run: |
+          firebase emulators:exec --only "auth,firestore,hosting" "sleep 5"
